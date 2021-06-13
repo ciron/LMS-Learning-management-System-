@@ -18,8 +18,8 @@ class AdminController extends Controller
         return view('admin.dashboard');
     }
     public function registeruser(){
-        $data=User::latest()->get();
-        return view('admin.user.index',compact('data'));
+
+        return view('admin.user.index');
     }
 
     public function allUser()

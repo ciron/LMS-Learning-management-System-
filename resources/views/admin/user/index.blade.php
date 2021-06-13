@@ -69,11 +69,7 @@
                         var data =""
                         var serial = 1
                       $.each(response, function(key, value){
-                        //   var banstat=value.status;
-                        //   consol.log(banstat);
-                        //   if(value.status===0){
-                        //       var userstatus = "<span>Ban</span>";
-                        //   }
+
                         data=data+"<tr>"
                         data=data+"<td>"+serial++ +"</td>"
                         data=data+"<td>"+value.name+"</td>"
