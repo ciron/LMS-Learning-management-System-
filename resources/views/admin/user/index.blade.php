@@ -7,43 +7,18 @@
 
     <div class="card pd-20 pd-sm-40">
       <h6 class="card-body-title">All Register User</h6>
+        <div id="notifDiv">
 
-      <div class="table-wrapper">
-        <table id="datatable1" class="table display responsive nowrap">
-          <thead>
-            <tr>
-              <th class="wd-15p">Serial NO</th>
-              <th class="wd-15p">Name</th>
-              <th class="wd-20p">Email</th>
-              <th class="wd-20p">Status</th>
-              <th class="wd-15p">Registation date</th>
-              <th class="wd-10p">Action</th>
+        </div>
+        <div id="get_data">
 
-            </tr>
-          </thead>
-          @php
-                $i=1;
-          @endphp
-          <tbody>
-
-{{--
-
-            <tr>
-              <td>fdf</td>
-              <td>fdg</td>
-              <td>fg</td>
-              <td>fg</td>
-              <td>
-                <i class="fas fa-user"></i>
-                <i class="fas fa-user-slash"></i>
-              </td>
-
-            </tr> --}}
+        </div>
 
 
-          </tbody>
-        </table>
-      </div><!-- table-wrapper -->
+
+
+
+
     </div><!-- card -->
 
 
@@ -51,46 +26,43 @@
 
 
    <script>
-        // $(document).ready(function(){
 
-        //  });
         $.ajaxSetup({
             headers:{
                 'X-CSRF-TOKEN':$('meta[name="csrf-token"]').attr('content')
             }
 
         })
-        function alluser(){
-                $.ajax({
-                    method:"GET",
-                    dataType:'json',
-                    url:"{{ route('allregisteruser') }}",
-                    success:function(response){
-                        var data =""
-                        var serial = 1
-                      $.each(response, function(key, value){
+        // function alluser(){
+        //         $.ajax({
+        //             method:"GET",
+        //             dataType:'json',
+        //             url:"{{ route('allregisteruser') }}",
+        //             success:function(response){
+        //                 var data =""
+        //                 var serial = 1
+        //               $.each(response, function(key, value){
 
-                        data=data+"<tr>"
-                        data=data+"<td>"+serial++ +"</td>"
-                        data=data+"<td>"+value.name+"</td>"
-                        data=data+"<td>"+value.email+"</td>"
-                        data=data+(value.status == 0 ? "<td>"+"<i class='fas fa-user text-success'></i>"+"</td>" : "<td>"+"<i class='fas fa-user-slash text-danger'></i>"+"</td>")
-                        data=data+"<td>"+value.created_at+"</td>"
-                        data=data+"<td>"
-                        data=data+ "<i class='fas fa-user'></i>"
-                        data=data+ " <i class='fas fa-user-slash'></i>"
-                        data=data+ "</td>"
-                        data=data+"</tr>"
 
-                      })
-                      $('tbody').html(data);
-                    }
-                })
-            }
-            alluser();
+        //                 data=data+"<tr>"
+        //                 data=data+"<td>"+serial++ +"</td>"
+        //                 data=data+"<td>"+value.name+"</td>"
+        //                 data=data+"<td>"+value.email+"</td>"
+        //                 data=data+(value.status == 0 ? "<td>"+"<i class='fas fa-user text-success'></i>"+"</td>" : "<td>"+"<i class='fas fa-user-slash text-danger'></i>"+"</td>")
+        //                 data=data+"<td>"+value.created_at+"</td>"
+        //                 data=data+(value.status == 0 ? "<td>"+"<button class='active_deactive_user' ><i class='fas fa-user-slash text-danger'></i></button>"+"</td>" : "<td>"+"<button class='active_deactive_user' ><i class='fas fa-user text-success'></i></button>"+"</td>")
+        //                 data=data+"</tr>"
+
+        //               })
+        //               $('tbody').html(data);
+        //             }
+        //         })
+        //     }
+        //     alluser();
 
     </script>
      <script>
+
         $(function(){
           'use strict';
 

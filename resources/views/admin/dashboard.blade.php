@@ -33,6 +33,13 @@
 
     <!-- vendor css -->
     <script src="http://code.jquery.com/jquery-1.11.0.min.js"></script>
+    {{-- <script src="http://code.jquery.com/jquery-3.4.1.js"></script> --}}
+    <script src="{{ asset('Admin') }}/js/custom.js"></script>
+    <link rel="stylesheet" type="text/css" href="https://cdn.datatables.net/1.10.25/css/jquery.dataTables.css">
+
+    <script type="text/javascript" charset="utf8" src="https://cdn.datatables.net/1.10.25/js/jquery.dataTables.js"></script>
+
+
     <link rel="stylesheet" href="https://pro.fontawesome.com/releases/v5.10.0/css/all.css" integrity="sha384-AYmEC3Yw5cVb3ZcuHtOA93w35dYTsvhLPVnYs9eStHfGJvOvKxVfELGroGkvsg+p" crossorigin="anonymous"/>
     <link href="{{ asset('Admin') }}/lib/font-awesome/css/font-awesome.css" rel="stylesheet">
     <link href="{{ asset('Admin') }}/lib/Ionicons/css/ionicons.css" rel="stylesheet">
@@ -370,12 +377,11 @@
       </div><!-- sl-mainpanel -->
     <!-- ########## END: MAIN PANEL ########## -->
 
-
-
-    <script src="{{ asset('Admin') }}/lib/jquery/jquery.js"></script>
+    {{-- <script src="{{ asset('Admin') }}/lib/jquery/jquery.js"></script> --}}
     <script src="{{ asset('Admin') }}/lib/popper.js/popper.js"></script>
     <script src="{{ asset('Admin') }}/lib/bootstrap/bootstrap.js"></script>
     <script src="{{ asset('Admin') }}/lib/jquery-ui/jquery-ui.js"></script>
+
     <script src="{{ asset('Admin') }}/lib/perfect-scrollbar/js/perfect-scrollbar.jquery.js"></script>
     <script src="{{ asset('Admin') }}/lib/jquery.sparkline.bower/jquery.sparkline.min.js"></script>
     <script src="{{ asset('Admin') }}/lib/d3/d3.js"></script>
@@ -392,6 +398,33 @@
     <script src="{{ asset('Admin') }}/js/starlight.js"></script>
     <script src="{{ asset('Admin') }}/js/ResizeSensor.js"></script>
     <script src="{{ asset('Admin') }}/js/dashboard.js"></script>
+    <script>
 
+        // $(document).ready( function () {
+        //     $('#datatableuser').DataTable();
+        // } );
+        $(function(){
+          'use strict';
+
+          $('#datatableuser').DataTable({
+            responsive: true,
+            language: {
+              searchPlaceholder: 'Search...',
+              sSearch: '',
+              lengthMenu: '_MENU_ items/page',
+            }
+          });
+
+          $('#datatableuser').DataTable({
+            bLengthChange: false,
+            searching: false,
+            responsive: true
+          });
+
+          // Select2
+          $('.dataTables_length select').select2({ minimumResultsForSearch: Infinity });
+
+        });
+      </script>
   </body>
 </html>

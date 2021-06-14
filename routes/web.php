@@ -35,8 +35,11 @@ Route::group(['middleware' => 'auth:admin'], function () {
 
     Route::get('/admin/home',[AdminController::class,'index'])->name('admindashboard');
     Route::get('admin/logout',[AdminController::class,'logout'])->name('adminlogout');
-    Route::get('admin/allUser',[AdminController::class,'allUser'])->name('allregisteruser');
+    Route::get('/allUser',[AdminController::class,'allUser'])->name('allregisteruser');
     Route::get('admin/allRegisterUsers',[AdminController::class,'registeruser'])->name('registeruser');
+    Route::post('admin/banuser/{id}',[AdminController::class,'banuser'])->name('banuser');
+    Route::get('userFetchList', [AdminController::class,'userFetchList']);
+    Route::get('/active_deactive_user/{id}', [AdminController::class,'active_deactive_user']);
 
 });
 
