@@ -32,14 +32,10 @@
     <title>cyberskillbd.com</title>
 
     <!-- vendor css -->
-    <script src="http://code.jquery.com/jquery-1.11.0.min.js"></script>
-    {{-- <script src="http://code.jquery.com/jquery-3.4.1.js"></script> --}}
+
+    <script src="http://code.jquery.com/jquery-3.4.1.js"></script>
     <script src="{{ asset('Admin') }}/js/custom.js"></script>
-    <link rel="stylesheet" type="text/css" href="https://cdn.datatables.net/1.10.25/css/jquery.dataTables.css">
-
-    <script type="text/javascript" charset="utf8" src="https://cdn.datatables.net/1.10.25/js/jquery.dataTables.js"></script>
-
-
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery-validate/1.19.0/jquery.validate.js"></script>
     <link rel="stylesheet" href="https://pro.fontawesome.com/releases/v5.10.0/css/all.css" integrity="sha384-AYmEC3Yw5cVb3ZcuHtOA93w35dYTsvhLPVnYs9eStHfGJvOvKxVfELGroGkvsg+p" crossorigin="anonymous"/>
     <link href="{{ asset('Admin') }}/lib/font-awesome/css/font-awesome.css" rel="stylesheet">
     <link href="{{ asset('Admin') }}/lib/Ionicons/css/ionicons.css" rel="stylesheet">
@@ -48,7 +44,7 @@
     <link href="{{ asset('Admin') }}/lib/highlightjs/github.css" rel="stylesheet">
     <link href="{{ asset('Admin') }}/lib/datatables/jquery.dataTables.css" rel="stylesheet">
     <link href="{{ asset('Admin') }}/lib/select2/css/select2.min.css" rel="stylesheet">
-
+    <script src="{{ asset('Admin/assets/js/bootstrap.min.js') }}"></script>
     <!-- Starlight CSS -->
     <link rel="stylesheet" href="{{ asset('Admin') }}/css/starlight.css">
   </head>
@@ -56,7 +52,7 @@
   <body>
 
     <!-- ########## START: LEFT PANEL ########## -->
-    <div class="sl-logo"><a href="{{ route('admindashboard') }}"><i class="icon ion-android-star-outline"></i>{{ config('app.name') }}</a></div>
+    <div class="sl-logo"><a href="{{ route('admindashboard') }}"><img src="{{ asset('Admin') }}/img/logo.png" height="auto" width="20px" alt="">{{ config('app.name') }}</a></div>
     <div class="sl-sideleft">
       <div class="input-group input-group-search">
         <input type="search" name="search" class="form-control" placeholder="Search">
@@ -67,32 +63,26 @@
 
       <label class="sidebar-label">Navigation</label>
       <div class="sl-sideleft-menu">
-        <a href="{{ route('admindashboard') }}" class="sl-menu-link active">
+        <a href="{{ route('admindashboard') }}" class="sl-menu-link @yield('dashboard')">
           <div class="sl-menu-item">
             <i class="menu-item-icon icon ion-ios-home-outline tx-22"></i>
             <span class="menu-item-label">Dashboard</span>
           </div><!-- menu-item -->
         </a><!-- sl-menu-link -->
-        <a href="{{ route('registeruser') }}" class="sl-menu-link">
+        <a href="{{ route('registeruser') }}" class="sl-menu-link @yield('registeruser')">
           <div class="sl-menu-item">
             <i class="menu-item-icon icon ion-ios-photos-outline tx-20"></i>
             <span class="menu-item-label">Registerd User</span>
           </div><!-- menu-item -->
         </a><!-- sl-menu-link -->
-        <a href="#" class="sl-menu-link">
+        <a href="{{ route('contacts.index') }}"  class="sl-menu-link @yield('Category')" >
           <div class="sl-menu-item">
             <i class="menu-item-icon ion-ios-pie-outline tx-20"></i>
-            <span class="menu-item-label">Charts</span>
-            <i class="menu-item-arrow fa fa-angle-down"></i>
+            <span class="menu-item-label">Category</span>
+
           </div><!-- menu-item -->
         </a><!-- sl-menu-link -->
-        <ul class="sl-menu-sub nav flex-column">
-          <li class="nav-item"><a href="chart-morris.html" class="nav-link">Morris Charts</a></li>
-          <li class="nav-item"><a href="chart-flot.html" class="nav-link">Flot Charts</a></li>
-          <li class="nav-item"><a href="chart-chartjs.html" class="nav-link">Chart JS</a></li>
-          <li class="nav-item"><a href="chart-rickshaw.html" class="nav-link">Rickshaw</a></li>
-          <li class="nav-item"><a href="chart-sparkline.html" class="nav-link">Sparkline</a></li>
-        </ul>
+
         <a href="#" class="sl-menu-link">
           <div class="sl-menu-item">
             <i class="menu-item-icon icon ion-ios-gear-outline tx-24"></i>
@@ -372,7 +362,7 @@
     <!-- ########## START: MAIN PANEL ########## -->
     <div class="sl-mainpanel">
         <nav class="breadcrumb sl-breadcrumb">
-          <a class="breadcrumb-item" href="index.html">Starlight</a>
+          <a class="breadcrumb-item" href="{{ route('admindashboard') }}">Admin Panel</a>
          @yield('admin_content')
       </div><!-- sl-mainpanel -->
     <!-- ########## END: MAIN PANEL ########## -->
@@ -381,6 +371,7 @@
     <script src="{{ asset('Admin') }}/lib/popper.js/popper.js"></script>
     <script src="{{ asset('Admin') }}/lib/bootstrap/bootstrap.js"></script>
     <script src="{{ asset('Admin') }}/lib/jquery-ui/jquery-ui.js"></script>
+    <script src="{{ asset('Admin/assets/js/jquery.validate.min.js') }}"></script>
 
     <script src="{{ asset('Admin') }}/lib/perfect-scrollbar/js/perfect-scrollbar.jquery.js"></script>
     <script src="{{ asset('Admin') }}/lib/jquery.sparkline.bower/jquery.sparkline.min.js"></script>
@@ -398,7 +389,15 @@
     <script src="{{ asset('Admin') }}/js/starlight.js"></script>
     <script src="{{ asset('Admin') }}/js/ResizeSensor.js"></script>
     <script src="{{ asset('Admin') }}/js/dashboard.js"></script>
-    <script>
+    <script src="{{ asset('Admin/assets/js/jquery.validate.min.js') }}"></script>
+
+    <script src="{{ asset('Admin/assets/js/bootstrap-notify.min.js') }}"></script>
+
+
+    <!-- Sweet Alert library -->
+    <link rel="stylesheet" href="{{ asset('Admin/assets/plugins/sweet-alert/sweetalert.css') }}">
+    <script src="{{ asset('Admin/assets/plugins/sweet-alert/sweetalert.min.js') }}"></script>
+    {{-- <script>
 
         // $(document).ready( function () {
         //     $('#datatableuser').DataTable();
@@ -406,7 +405,7 @@
         $(function(){
           'use strict';
 
-          $('#datatableuser').DataTable({
+          $('#datatable1').DataTable({
             responsive: true,
             language: {
               searchPlaceholder: 'Search...',
@@ -415,16 +414,11 @@
             }
           });
 
-          $('#datatableuser').DataTable({
-            bLengthChange: false,
-            searching: false,
-            responsive: true
-          });
 
           // Select2
           $('.dataTables_length select').select2({ minimumResultsForSearch: Infinity });
 
         });
-      </script>
+      </script> --}}
   </body>
 </html>

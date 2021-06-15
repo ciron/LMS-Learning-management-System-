@@ -1,6 +1,6 @@
 @extends('admin.dashboard')
+@section('registeruser') active @endsection
 @section('admin_content')
-<a class="breadcrumb-item" href="index.html">Tables</a>
 <span class="breadcrumb-item active">User Table</span>
 </nav>
 <div class="sl-pagebody">

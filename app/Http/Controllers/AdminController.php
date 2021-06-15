@@ -15,7 +15,7 @@ class AdminController extends Controller
      */
     public function index()
     {
-        return view('admin.dashboard');
+        return view('admin.home');
     }
     public function registeruser(){
 
@@ -27,26 +27,26 @@ class AdminController extends Controller
         $data=User::latest()->get();
         return response()->json($data);
     }
-    public function banuser(Request $request,$id){
-        $requireduser=User::findOrFail($id);
-        if($requireduser->status==0){
-            $user=User::findOrFail($id)->update([
-                'status'=>1,
-            ]);
-        }else if($requireduser->status==1){
-            $user=User::findOrFail($id)->update([
-                'status'=>0,
-            ]);
-        }
+    // public function banuser(Request $request,$id){
+    //     $requireduser=User::findOrFail($id);
+    //     if($requireduser->status==0){
+    //         $user=User::findOrFail($id)->update([
+    //             'status'=>1,
+    //         ]);
+    //     }else if($requireduser->status==1){
+    //         $user=User::findOrFail($id)->update([
+    //             'status'=>0,
+    //         ]);
+    //     }
 
 
-    }
+    // }
 
 
-    public function userFetchList() {
-        $data=User::latest()->simplePaginate(5);
-        return response()->json($data);
-    }
+    // public function userFetchList() {
+    //     $data=User::latest()->simplePaginate(5);
+    //     return response()->json($data);
+    // }
 
     public function active_deactive_user($id) {
             $user = User::find($id);

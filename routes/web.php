@@ -1,6 +1,7 @@
 <?php
 
 use Illuminate\Support\Facades\Route;
+use App\Http\Controllers\CategoryController;
 use App\Http\Controllers\Auth\LoginController;
 use App\Http\Controllers\Auth\RegisterController;
 use App\Http\Controllers\AdminController;
@@ -40,6 +41,17 @@ Route::group(['middleware' => 'auth:admin'], function () {
     Route::post('admin/banuser/{id}',[AdminController::class,'banuser'])->name('banuser');
     Route::get('userFetchList', [AdminController::class,'userFetchList']);
     Route::get('/active_deactive_user/{id}', [AdminController::class,'active_deactive_user']);
+    // Route::get('category/indexing', [CategoryController::class,'indexing'])->name('categoryindex');
+    // Route::get('/index',[CategoryController::class,'index'])->name('allCat');
+    // Route::resource('ajaxproducts','ProductAjaxController');
+    // Route::resource('ajaxproducts', CategoryController::class);
+    // Route::get('ajax-crud-datatable', [CategoryController::class, 'index']);
+    // Route::post('store-company', [CategoryController::class, 'store']);
+    // Route::post('edit-company', [CategoryController::class, 'edit']);
+    // Route::post('delete-company', [CategoryController::class, 'destroy']);
+    Route::resource('contacts', CategoryController::class);
+    Route::get('admin/getall', [CategoryController::class, 'getall'])->name('getall.contacts');
+
 
 });
 
