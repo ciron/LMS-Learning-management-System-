@@ -3,6 +3,11 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
+use Auth;
+use App\Models\Category;
+use App\Models\Course;
+use Datatables;
+use View;
 
 class CourseController extends Controller
 {
@@ -13,7 +18,25 @@ class CourseController extends Controller
      */
     public function index()
     {
-        //
+        
+        return view('admin.course.index');
+    }
+
+    public function getallCourse(){
+        $course = Course::orderBy('id', 'desc');
+        return datatables($course)
+          //  ->setRowAttr(['align' => 'center'])
+          // ->addColumn('status', function ($contact) {
+          //    return $contact->status ? 'Active' : 'Inactive';
+          // })
+          ->addColumn('created_at', function ($course) {
+             return $course->created_at->diffForHumans();
+          })
+          ->addColumn('updated_at', function ($course) {
+             return $course->updated_at->diffForHumans();
+          })
+          ->addColumn('action', 'admin.course.action')
+          ->make(true);
     }
 
     /**
@@ -23,7 +46,8 @@ class CourseController extends Controller
      */
     public function create()
     {
-        //
+        $view = View::make('admin.course.create')->render();
+       return response()->json(['html' => $view]);
     }
 
     /**

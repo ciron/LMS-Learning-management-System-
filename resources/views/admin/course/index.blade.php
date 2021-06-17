@@ -1,7 +1,7 @@
 @extends('admin.dashboard')
 @section('Category') active @endsection
 @section('admin_content')
-<span class="breadcrumb-item active">Category Table</span>
+<span class="breadcrumb-item active">Course Table</span>
 </nav>
 <div class="sl-pagebody">
 
@@ -10,7 +10,7 @@
 
       <div class="panel-heading">
             <button class="btn btn-success" onclick="create()"><i class="glyphicon glyphicon-plus"></i>
-                New User
+                New Course
             </button>
 
     </div>
@@ -81,11 +81,10 @@
             table = $('#manage_all').DataTable({
                 processing: true,
                 serverSide: true,
-                ajax: '{!! route('getall.contacts') !!}',
+                ajax: '{!! route('getall.course') !!}',
                 columns: [
 
                     {data: 'name', name: 'name'},
-
                     {data: 'created_at', name: 'created_at'},
                     {data: 'updated_at', name: 'updated_at'},
                     // {data: 'status', name: 'status'},
@@ -104,11 +103,11 @@
         function create() {
 
             $("#modal_data").empty();
-            $('.modal-title').text('New Category'); // Set Title to Bootstrap modal title
+            $('.modal-title').text('New Course'); // Set Title to Bootstrap modal title
 
             $.ajax({
                 type: 'GET',
-                url: 'contacts/create',
+                url: 'Allcourse/create',
                 success: function (data) {
                     $("#modal_data").html(data.html);
                     $('#modalUser').modal('show'); // show bootstrap modal
@@ -162,7 +161,7 @@
         });
 
     </script>
-    <script type="text/javascript">
+    {{-- <script type="text/javascript">
 
         $(document).ready(function () {
             $("#manage_all").on("click", ".delete", function () {
@@ -205,5 +204,5 @@
             });
         });
 
-    </script>
+    </script> --}}
 @stop

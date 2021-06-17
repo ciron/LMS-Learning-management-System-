@@ -6,6 +6,7 @@ use App\Http\Controllers\Auth\LoginController;
 use App\Http\Controllers\Auth\RegisterController;
 use App\Http\Controllers\AdminController;
 use App\Http\Controllers\HomeController;
+use App\Http\Controllers\CourseController;
 /*
 |--------------------------------------------------------------------------
 | Web Routes
@@ -51,6 +52,11 @@ Route::group(['middleware' => 'auth:admin'], function () {
     // Route::post('delete-company', [CategoryController::class, 'destroy']);
     Route::resource('contacts', CategoryController::class);
     Route::get('admin/getall', [CategoryController::class, 'getall'])->name('getall.contacts');
+    // Route::resource('courses', [CourseController::class]);
+    Route::get('/Allcourse',[CourseController::class,'index'])->name('allcourses');
+    Route::get('Allcourse/create',[CourseController::class,'create'])->name('courses.create');
+    Route::get('admin/getallCourse', [CourseController::class, 'getallCourse'])->name('getall.course');
+
 
 
 });
