@@ -86,10 +86,10 @@
           </div><!-- menu-item -->
         </a><!-- sl-menu-link -->
 
-        <a href="{{ route('allcourses') }}" class="sl-menu-link">
+        <a href="{{ route('allcourses') }}" class="sl-menu-link @yield('course')">
           <div class="sl-menu-item">
             <i class="menu-item-icon icon ion-ios-gear-outline tx-24"></i>
-            <span class="menu-item-label">Forms</span>
+            <span class="menu-item-label">Course</span>
             {{-- <i class="menu-item-arrow fa fa-angle-down"></i> --}}
           </div><!-- menu-item -->
         </a><!-- sl-menu-link -->
@@ -427,7 +427,7 @@
         });
       </script> --}}
 
-     
+
 
   </body>
 </html>

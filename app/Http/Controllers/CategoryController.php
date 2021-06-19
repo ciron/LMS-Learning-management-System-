@@ -46,15 +46,24 @@ class CategoryController extends Controller
     }
     public function store(Request $request)
     {
-       //
-       $request->validate([
-         'name' => 'required|unique',
 
-       ]);
+        $this->validate($request, [
+            'name'     => 'required|unique:categories,name'
+        ]);
        $contact = new Category;
        $contact->name = $request->name;
        $contact->save(); //
        return response()->json(['html' => 'Successfully Inserted']);
+
+    //    $allcat= Category::where('name',$request->name)->first();
+    //     if($allcat){
+    //         return response()->json(['html' => 'Category is exist']);
+    //     }else{
+    //         $contact = new Category;
+    //         $contact->name = $request->name;
+    //         $contact->save(); //
+    //         return response()->json(['html' => 'Successfully Inserted']);
+    //     }
     }
     public function show(Category $contact)
    {

@@ -107,6 +107,7 @@
             $('.modal-title').text('New Category'); // Set Title to Bootstrap modal title
 
             $.ajax({
+                headers: {'X-CSRF-Token': $('meta[name=csrf_token]').attr('content')},
                 type: 'GET',
                 url: 'contacts/create',
                 success: function (data) {

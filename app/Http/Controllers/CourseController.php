@@ -18,7 +18,7 @@ class CourseController extends Controller
      */
     public function index()
     {
-        
+
         return view('admin.course.index');
     }
 
@@ -29,6 +29,12 @@ class CourseController extends Controller
           // ->addColumn('status', function ($contact) {
           //    return $contact->status ? 'Active' : 'Inactive';
           // })
+        //   ->addColumn('category_id', function ($course) {
+        //     return $course->category->name;
+        //  })
+         ->addColumn('course_code', function ($course) {
+            return $course->course_code;
+         })
           ->addColumn('created_at', function ($course) {
              return $course->created_at->diffForHumans();
           })
@@ -58,8 +64,29 @@ class CourseController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        $Course = new Course;
+        $Course->course_name = $request->course_name;
+        $Course->course_code = uniqid();
+        $Course->course_code = $request->course_code;
+        $Course->description = $request->description;
+        $Course->regular_price = $request->regular_price;
+        $Course->discount_price = $request->discount_price;
+        $Course->who_is_it_for = $request->who_is_it_for;
+        $Course->what_you_will_learn = $request->what_you_will_learn;
+        $Course->what_it_prepare_you_for = $request->what_it_prepare_you_for;
+        $Course->category_id = $request->category_id;
+        $Course->online_self_palced = $request->online_self_palced;
+        $Course->course_time_need = $request->course_time_need;
+        $Course->hands_on_lab_assignment = $request->hands_on_lab_assignment;
+        $Course->video_content = $request->video_content;
+        $Course->course_timelimit_after_enroll = $request->course_timelimit_after_enroll;
+        $Course->Digital_badge = $request->Digital_badge;
+        $Course->discussion_forum = $request->discussion_forum;
+        $Course->save(); //
+        return response()->json(['html' => 'Successfully Inserted']);
     }
+
+
 
     /**
      * Display the specified resource.

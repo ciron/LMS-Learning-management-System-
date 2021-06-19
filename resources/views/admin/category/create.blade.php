@@ -1,5 +1,6 @@
 <form id='create' action="" enctype="multipart/form-data" method="post"
-      accept-charset="utf-8">
+      >
+      @csrf
     <div class="box-body">
         <div id="status"></div>
         <div class="form-group col-md-8 col-sm-12">
@@ -38,11 +39,10 @@
             submitHandler: function (form) {
 
                 var myData = new FormData($("#create")[0]);
-                var CSRF_TOKEN = $('meta[name="csrf-token"]').attr('content');
-                myData.append('_token', CSRF_TOKEN);
 
                 $.ajax({
-                    url: 'contacts',
+                    headers: {'X-CSRF-Token': $('meta[name=csrf_token]').attr('content')},
+                    url: "{{ route('contacts.store') }}",
                     type: 'POST',
                     data: myData,
                     dataType: 'json',
@@ -61,6 +61,9 @@
                         $("#submit").prop('disabled', false); // disable button
                         $("html, body").animate({scrollTop: 0}, "slow");
                         $('#modalUser').modal('hide'); // hide bootstrap modal
+                    },
+                    error:function(error){
+                        console.log(error.responseJSON.errors);
                     }
                 });
             }
