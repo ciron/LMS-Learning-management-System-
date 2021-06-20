@@ -33,9 +33,9 @@
 
     <!-- vendor css -->
 
-    <script src="http://code.jquery.com/jquery-3.4.1.js"></script>
+    <script src="{{ asset('Admin') }}/js/jquery-3.4.1.js"></script>
     <script src="{{ asset('Admin') }}/js/custom.js"></script>
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery-validate/1.19.0/jquery.validate.js"></script>
+    <script src="{{ asset('Admin') }}/js/jquery.validate.js"></script>
     <link rel="stylesheet" href="https://pro.fontawesome.com/releases/v5.10.0/css/all.css" integrity="sha384-AYmEC3Yw5cVb3ZcuHtOA93w35dYTsvhLPVnYs9eStHfGJvOvKxVfELGroGkvsg+p" crossorigin="anonymous"/>
     <link href="{{ asset('Admin') }}/lib/font-awesome/css/font-awesome.css" rel="stylesheet">
     <link href="{{ asset('Admin') }}/lib/Ionicons/css/ionicons.css" rel="stylesheet">
@@ -48,6 +48,8 @@
     <link href="{{ asset('Admin') }}/lib/medium-editor/default.css" rel="stylesheet">
     <link href="{{ asset('Admin') }}/lib/summernote/summernote-bs4.css" rel="stylesheet">
     <script src="{{ asset('Admin/assets/js/bootstrap.min.js') }}"></script>
+    <script src="{{ asset('Admin/js/sweetalert2.all.min.js') }}"></script>
+
     <!-- Starlight CSS -->
     <link rel="stylesheet" href="{{ asset('Admin') }}/css/starlight.css">
   </head>

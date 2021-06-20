@@ -95,7 +95,10 @@ class CategoryController extends Controller
 
     public function update(Request $request, Category $contact)
     {
-       //
+
+        $this->validate($request, [
+            'name'     => 'required|unique:categories,name'
+        ]);
        $contact->name = $request->name;
 
        $contact->save(); //

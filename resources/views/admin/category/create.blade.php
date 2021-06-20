@@ -51,7 +51,7 @@
                     contentType: false,
                     beforeSend: function () {
                         $('#loader').show();
-                        $("#submit").prop('disabled', true); // disable button
+                        // $("#submit").prop('disabled', true); // disable button
                     },
                     success: function (data) {
 
@@ -63,7 +63,12 @@
                         $('#modalUser').modal('hide'); // hide bootstrap modal
                     },
                     error:function(error){
-                        console.log(error.responseJSON.errors);
+                        // console.log(error.responseJSON.errors);
+                    Swal.fire({
+                        text: 'Already added it try another',
+                        icon: 'error',
+                        confirmButtonText: 'Ok'
+                        })
                     }
                 });
             }

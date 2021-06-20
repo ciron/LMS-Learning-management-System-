@@ -1,12 +1,12 @@
 @extends('admin.dashboard')
 @section('course') active @endsection
 @section('admin_content')
-<span class="breadcrumb-item active">Category Table</span>
+<span class="breadcrumb-item active">Course Table</span>
 </nav>
 <div class="sl-pagebody">
 
     <div class="card pd-20 pd-sm-40">
-      <h6 class="card-body-title">All Category</h6>
+      <h6 class="card-body-title">All Course</h6>
 
       <div class="panel-heading">
             <button class="btn btn-success" onclick="create()"><i class="glyphicon glyphicon-plus"></i>
@@ -128,12 +128,12 @@
         $("#manage_all").on("click", ".edit", function () {
 
             $("#modal_data").empty();
-            $('.modal-title').text('Edit Category'); // Set Title to Bootstrap modal title
+            $('.modal-title').text('Edit Course'); // Set Title to Bootstrap modal title
 
             var id = $(this).attr('id');
 
             $.ajax({
-                url: 'contacts/' + id + '/edit',
+                url: 'courses/' + id + '/edit',
                 type: 'get',
                 success: function (data) {
                     $("#modal_data").html(data.html);
@@ -148,12 +148,12 @@
         $("#manage_all").on("click", ".view", function () {
 
             $("#modal_data").empty();
-            $('.modal-title').text('View Category'); // Set Title to Bootstrap modal title
+            $('.modal-title').text('View Course'); // Set Title to Bootstrap modal title
 
             var id = $(this).attr('id');
 
             $.ajax({
-                url: 'contacts/' + id,
+                url: 'courses/' + id,
                 type: 'get',
                 success: function (data) {
                     $("#modal_data").html(data.html);
@@ -184,7 +184,7 @@
                     cancelButtonText: "Cancel"
                 }, function () {
                     $.ajax({
-                        url: 'contacts/' + id,
+                        url: 'courses/' + id,
                         data: {"_token": CSRF_TOKEN},
                         type: 'DELETE',
                         dataType: 'json',

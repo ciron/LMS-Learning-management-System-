@@ -8,6 +8,7 @@ use App\Models\Category;
 use App\Models\Course;
 use Datatables;
 use View;
+use DB;
 
 class CourseController extends Controller
 {
@@ -23,6 +24,7 @@ class CourseController extends Controller
     }
 
     public function getallCourse(){
+
         $course = Course::orderBy('id', 'desc');
         return datatables($course)
           //  ->setRowAttr(['align' => 'center'])
@@ -32,9 +34,9 @@ class CourseController extends Controller
         //   ->addColumn('category_id', function ($course) {
         //     return $course->category->name;
         //  })
-         ->addColumn('course_code', function ($course) {
-            return $course->course_code;
-         })
+        //  ->addColumn('course_code', function ($course) {
+        //     return $course->category->name;
+        //  })
           ->addColumn('created_at', function ($course) {
              return $course->created_at->diffForHumans();
           })
@@ -64,9 +66,12 @@ class CourseController extends Controller
      */
     public function store(Request $request)
     {
+        $this->validate($request, [
+            'course_name'     => 'required|unique:courses,course_name'
+        ]);
         $Course = new Course;
         $Course->course_name = $request->course_name;
-        $Course->course_code = uniqid();
+        // $Course->course_code = uniqid();
         $Course->course_code = $request->course_code;
         $Course->description = $request->description;
         $Course->regular_price = $request->regular_price;
@@ -80,7 +85,7 @@ class CourseController extends Controller
         $Course->hands_on_lab_assignment = $request->hands_on_lab_assignment;
         $Course->video_content = $request->video_content;
         $Course->course_timelimit_after_enroll = $request->course_timelimit_after_enroll;
-        $Course->Digital_badge = $request->Digital_badge;
+        $Course->digital_badge = $request->digital_badge;
         $Course->discussion_forum = $request->discussion_forum;
         $Course->save(); //
         return response()->json(['html' => 'Successfully Inserted']);
@@ -94,9 +99,11 @@ class CourseController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function show($id)
+    public function show(Course $course)
     {
-        //
+        $view = View::make('admin.course.view', compact('course'))->render();
+
+        return response()->json(['html' => $view]);
     }
 
     /**
@@ -105,9 +112,12 @@ class CourseController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function edit($id)
+    public function edit(Course $course)
     {
-        //
+
+       $view = View::make('admin.course.edit', compact('course'))->render();
+
+       return response()->json(['html' => $view]);
     }
 
     /**
@@ -117,9 +127,28 @@ class CourseController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, $id)
+    public function update(Request $request, Course $course)
     {
-        //
+        // $this->validate($request, [
+        //     'course_name'     => 'required|unique:courses,course_name'
+        // ]);
+        $course->course_name = $request->course_name;
+        $course->description = $request->description;
+        $course->regular_price = $request->regular_price;
+        $course->discount_price = $request->discount_price;
+        $course->who_is_it_for = $request->who_is_it_for;
+        $course->what_you_will_learn = $request->what_you_will_learn;
+        $course->what_it_prepare_you_for = $request->what_it_prepare_you_for;
+        $course->category_id = $request->category_id;
+        $course->online_self_palced = $request->online_self_palced;
+        $course->course_time_need = $request->course_time_need;
+        $course->hands_on_lab_assignment = $request->hands_on_lab_assignment;
+        $course->video_content = $request->video_content;
+        $course->course_timelimit_after_enroll = $request->course_timelimit_after_enroll;
+        $course->digital_badge = $request->digital_badge;
+        $course->discussion_forum = $request->discussion_forum;
+        $course->save();
+       return response()->json(['html' => 'Successfully Updated']);
     }
 
     /**
@@ -128,8 +157,10 @@ class CourseController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function destroy($id)
+    public function destroy(Course $course)
     {
-        //
+       //
+       $course->delete();
+       return response()->json(['type' => 'success', 'message' => 'Successfully Deleted']);
     }
 }
